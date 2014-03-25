@@ -13,6 +13,54 @@
  */
 
 .rails_embed_code_editor {
-  position: relative;
-  height: 500px;
+  position: relative !important;
+  border: 1px solid lightgray;
+  margin: auto;
+}
+
+button.rails_embed_code_editor_button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 1000;
+
+  -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background-color: #ededed;
+  -webkit-border-top-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  border-bottom-right-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  border-bottom-left-radius: 0px;
+  text-indent: 0;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  color: #777777;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  height: 40px;
+  line-height: 40px;
+  width: 100px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+button.rails_embed_code_editor_button:hover {
+  background-color: #dfdfdf;
+}
+
+button.rails_embed_code_editor_button:active {
+  top: 6px;
+  right: 5px;
 }

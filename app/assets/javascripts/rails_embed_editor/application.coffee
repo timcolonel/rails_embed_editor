@@ -19,6 +19,10 @@ window.load_rails_embed_code_editor = () ->
     }
     setup_editor(container[0], options)
 
+    button = $('<div><button class="rails_embed_code_editor_button">Save</button></div>').appendTo(container)
+    button.onClick () ->
+
+
 setup_editor = (element, options) ->
   defaults = {
     theme: 'monokai'
@@ -33,3 +37,6 @@ setup_editor = (element, options) ->
   editor.getSession().setMode("ace/mode/" + options['mode']);
   editor.setOption("firstLineNumber", options['firstLineNumber'])
   editor.setReadOnly(options['readonly'])
+  editor.setAutoScrollEditorIntoView();
+  editor.setOption("maxLines", 40);
+  editor.setOption("minLines", 5);

@@ -25,9 +25,6 @@ module RailsEmbedEditor
     def read_lines
       lines = []
       File.open(@filename, 'r') do |f|
-        puts 'lines:'
-        puts @first_line
-        puts @last_line
         lines = f.readlines[@first_line-1...@last_line]
       end
       lines
@@ -35,6 +32,23 @@ module RailsEmbedEditor
 
     def read_text
       read_lines.join()
+    end
+
+    def save_text(text)
+      save_lines(text.split(/\r?\n/).map { |x| "#{x}\n" })
+    end
+
+    def save_lines(lines)
+      all_lines = []
+      File.open(@filename, 'r') do |f|
+        all_lines = f.readlines
+      end
+      all_lines = all_lines[0...@first_line-1] + lines + all_lines[@last_line..-1]
+      File.open(@filename, 'w') do |f|
+        all_lines.each do |line|
+          f.write(line)
+        end
+      end
     end
   end
 end

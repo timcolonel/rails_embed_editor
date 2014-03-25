@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 4.0.4'
   s.add_dependency 'ace-rails-ap'
+  s.add_dependency 'json'
 
   s.add_development_dependency 'sqlite3'
 end

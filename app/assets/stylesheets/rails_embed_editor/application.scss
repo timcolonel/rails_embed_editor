@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.rails_embed_code_editor {
+  position: relative;
+  height: 500px;
+}

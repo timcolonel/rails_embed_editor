@@ -1,4 +1,5 @@
-require "rails_embed_editor/engine"
+require 'ace/rails'
+require 'rails_embed_editor/engine'
 
 module RailsEmbedEditor
 end

@@ -17,11 +17,9 @@ window.load_rails_embed_code_editor = () ->
       filename: container.data('filename')
       first_line: container.data('first-line')
       last_line: container.data('last-line')
-      readonly: container.data('readonly') == 'true'
+      readonly: (container.data('readonly'))
     }
     setup_editor(container[0], options)
-
-
 
 
 setup_editor = (element, options) ->
@@ -29,7 +27,7 @@ setup_editor = (element, options) ->
     theme: 'monokai'
     mode: 'ruby'
     firstLineNumber: 1
-    readonly: false
+    readonly: true
   }
   options = $.extend({}, defaults, options);
   editor = ace.edit(element)
@@ -45,12 +43,18 @@ setup_editor = (element, options) ->
 
   options['last_line'] ?= options['firstLineNumber'] + editor.session.getLength()
 
-  button = $('<div><button class="rails_embed_code_editor_button">Save</button></div>').appendTo(element)
+  button = $('<div><button class="rails_embed_code_editor_button">Save</button></div>').appendTo(element).children()
+  button.text('Enable edit') if options['readonly']
   button.click () ->
-    $.post( '/rails_embed_editor/edit', {
-      content: editor.getValue()
-      first_line: options['first_line']
-      last_line: options['last_line']
-      filename: options['filename']
-    }).success (data) ->
-      console.log(data)
+    if options['readonly']
+      button.text('Save')
+      options['readonly'] = false
+      editor.setReadOnly(options['readonly'])
+    else
+      $.post('/rails_embed_editor/edit', {
+        content: editor.getValue()
+        first_line: options['first_line']
+        last_line: options['last_line']
+        filename: options['filename']
+      }).success (data) ->
+        console.log(data)

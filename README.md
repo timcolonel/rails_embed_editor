@@ -6,7 +6,7 @@ rails_embed_editor
 #Installation
 Install the gem
 ```ruby
-gem 'rails_embed_editor', :github => 'timcolonel/rails_embed_editor'
+gem 'rails_embed_editor'
 ```
 Include the assests
 ```erb

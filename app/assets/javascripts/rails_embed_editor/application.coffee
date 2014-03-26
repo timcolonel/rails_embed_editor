@@ -14,6 +14,7 @@ window.load_rails_embed_code_editor = () ->
     options = {
       theme: container.data('theme')
       mode: container.data('mode')
+      filename: container.data('filename')
       first_line: container.data('first-line')
       last_line: container.data('last-line')
       readonly: container.data('readonly') == 'true'
@@ -41,6 +42,7 @@ setup_editor = (element, options) ->
   editor.setOption("maxLines", 40);
   editor.setOption("minLines", 5);
 
+
   options['last_line'] ?= options['firstLineNumber'] + editor.session.getLength()
 
   button = $('<div><button class="rails_embed_code_editor_button">Save</button></div>').appendTo(element)
@@ -49,5 +51,6 @@ setup_editor = (element, options) ->
       content: editor.getValue()
       first_line: options['first_line']
       last_line: options['last_line']
+      filename: options['filename']
     }).success (data) ->
       console.log(data)

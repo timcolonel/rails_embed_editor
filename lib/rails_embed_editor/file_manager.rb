@@ -10,9 +10,9 @@ module RailsEmbedEditor
 
     def self.from_options(filename, options)
       if options[:first_line].nil?
-        from_around(filename, options[:line], options[:radius])
+        from_around(filename, options[:line].to_i, options[:radius].to_i)
       else
-        RailsEmbedEditor::FileManager.new(filename, options[:first_line], options[:last_line])
+        RailsEmbedEditor::FileManager.new(filename, options[:first_line].to_i, options[:last_line].to_i)
       end
     end
 

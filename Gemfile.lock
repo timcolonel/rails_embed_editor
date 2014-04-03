@@ -4,7 +4,7 @@ PATH
     rails_embed_editor (0.0.1)
       ace-rails-ap
       json
-      rails (~> 4.0.4)
+      rails (~> 4.0, >= 4.0.0)
 
 GEM
   remote: https://rubygems.org/

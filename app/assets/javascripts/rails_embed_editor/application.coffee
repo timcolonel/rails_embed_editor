@@ -3,7 +3,7 @@
 #= require ace/ace
 #= require ace/mode-ruby
 #= require ace/theme-monokai
-
+Range = require('ace/range').Range
 $(document).ready () ->
   window.load_rails_embed_code_editor()
 
@@ -39,6 +39,7 @@ setup_editor = (element, options) ->
   editor.setAutoScrollEditorIntoView();
   editor.setOption("maxLines", 40);
   editor.setOption("minLines", 5);
+  editor.getSession().addMarker(new Range(3, 0, 3, Infinity), "warning", "text");
 
   if options['editormode'] != 'readonly'
     options['last_line'] ?= options['firstLineNumber'] + editor.session.getLength()

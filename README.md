@@ -6,7 +6,7 @@ rails_embed_editor
 #Installation
 Install the gem
 ```ruby
-gem 'rails_embed_editor', :github => 'timcolonel/rails_embed_editor'
+gem 'rails_embed_editor'
 ```
 Include the assests
 ```erb
@@ -24,11 +24,15 @@ You can give the follwoing options:
 * `last_line` The last line to read
 * `line` The line where the editor will be centered(To be used with `radius`)
 * `radius` The radius around the given line (To be used with `line`)
-* `readonly` If the editor is for showing only
+* `editormode` Set what the editor can do. (Add `RailsEmbedEditor::EditorMode::` in front)
+ * `READONLY` The editor will only be able to show the content 
+ * `READWRIE` The editor will start in readonly mode but an option to enable editing is displayed
+ * `WRITE` The editor start in edit mode
 
 Example: (This will read 2 line around line 5 in the file `welcome/how.html.erb`)
 ```erb  
-<%= rails_embed_editor("#{Rails.root}/app/views/welcome/show.html.erb", :line => 5, :radius => 2, :readonly => true) %>
+<%= rails_embed_editor("#{Rails.root}/app/views/welcome/show.html.erb", :line => 5, :radius => 2, 
+:editormode => RailsEmbedEditor::EditorMode::READ_WRITE) %>
 ```
 
 This is what the editor looks like

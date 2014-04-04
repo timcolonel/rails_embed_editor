@@ -18,6 +18,7 @@ window.load_rails_embed_code_editor = () ->
       first_line: container.data('first-line')
       last_line: container.data('last-line')
       editormode: container.data('editormode')
+      highlight: compute_range(container.data('highlight'), container.data('first-line'))
     }
     setup_editor(container[0], options)
 
@@ -39,7 +40,9 @@ setup_editor = (element, options) ->
   editor.setAutoScrollEditorIntoView();
   editor.setOption("maxLines", 40);
   editor.setOption("minLines", 5);
-  editor.getSession().addMarker(new Range(3, 0, 3, Infinity), "warning", "text");
+
+  console.log('str: ' + options['highlight'])
+  editor.getSession().addMarker(options['highlight'], "warning", "text") unless options['highlight'] == null
 
   if options['editormode'] != 'readonly'
     options['last_line'] ?= options['firstLineNumber'] + editor.session.getLength()
@@ -58,3 +61,19 @@ setup_editor = (element, options) ->
           filename: options['filename']
         }).success (data) ->
           console.log(data)
+
+compute_range = (str, line = 1) ->
+  offset = parseInt(line)
+  return null if str == undefined
+  _array = str.toString().split(',')
+  for i in [0..._array.length]
+    _array[i] = parseInt(_array[i])
+  switch _array.length
+    when 1
+      new Range(_array[0]-offset, 0, _array[0]-offset, Infinity)
+    when 2
+      new Range(_array[0]-offset, 0, _array[1]-offset, Infinity)
+    when 4
+      new Range(_array[0]-offset, _array[1], _array[2]-offset, _array[3])
+    else
+      null

@@ -8,6 +8,7 @@ module RailsEmbedEditor
       last_line = manager.last_line
       content_tag('div', text, :class => 'rails_embed_code_editor',
                   'data-first-line' => first_line, 'data-last-line' => last_line, 'data-filename' => filename,
+                  'data-highlight' => options[:highlight],
                   'data-editormode' => options[:editormode])
     end
   end

@@ -3,6 +3,9 @@
 #= require ace/ace
 #= require ace/mode-ruby
 #= require ace/theme-monokai
+#= require ace/theme-github
+
+window.rails_embed_editor_default_theme ?= 'github'
 Range = require('ace/range').Range
 $(document).ready () ->
   window.load_rails_embed_code_editor()
@@ -25,7 +28,7 @@ window.load_rails_embed_code_editor = () ->
 
 setup_editor = (element, options) ->
   defaults = {
-    theme: 'monokai'
+    theme: window.rails_embed_editor_default_theme
     mode: 'ruby'
     firstLineNumber: 1
     editormode: 'readonly'
@@ -41,8 +44,7 @@ setup_editor = (element, options) ->
   editor.setOption("maxLines", 40);
   editor.setOption("minLines", 5);
 
-  console.log('str: ' + options['highlight'])
-  editor.getSession().addMarker(options['highlight'], "warning", "text") unless options['highlight'] == null
+  editor.getSession().addMarker(options['highlight'], "editor_highlight", "text") unless options['highlight'] == null
 
   if options['editormode'] != 'readonly'
     options['last_line'] ?= options['firstLineNumber'] + editor.session.getLength()
@@ -60,7 +62,6 @@ setup_editor = (element, options) ->
           last_line: options['last_line']
           filename: options['filename']
         }).success (data) ->
-          console.log(data)
 
 compute_range = (str, line = 1) ->
   offset = parseInt(line)

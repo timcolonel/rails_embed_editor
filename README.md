@@ -28,15 +28,36 @@ You can give the follwoing options:
  * `READONLY` The editor will only be able to show the content 
  * `READWRIE` The editor will start in readonly mode but an option to enable editing is displayed
  * `WRITE` The editor start in edit mode
-
+* `highlight` Highlight some part of the code(String). It can have 3 difference format
+ * `line` Will highlight the given line
+ * `line_start, line_end` Will highlight the range of line given
+ * `line_start, col_start, line_end, cold_end` Will highlight the given range with column start and end
 Example: (This will read 2 line around line 5 in the file `welcome/how.html.erb`)
 ```erb  
 <%= rails_embed_editor("#{Rails.root}/app/views/welcome/show.html.erb", :line => 5, :radius => 2, 
+:highlight => '5'
 :editormode => RailsEmbedEditor::EditorMode::READ_WRITE) %>
 ```
 
 This is what the editor looks like
-![capture](https://f.cloud.github.com/assets/1031227/2528947/4a6d1588-b515-11e3-99f2-3d6a6627d8fe.PNG)
+![capture](https://cloud.githubusercontent.com/assets/1031227/2618826/e35897d2-bc26-11e3-8ad2-bf3d9a12bb2a.PNG)
 
+#Customization
+##Change default theme
+The plugin is using ace_rails_ap gem. You can include any theme the gem has included.
 
+First require
+```coffee
+#= require ace/theme-themeIwant
+
+#Example
+#= require ace/theme-chaos
+```
+Then edit the global variable
+```coffee
+window.rails_embed_editor_default_theme = 'themeIwant'
+
+#Example
+window.rails_embed_editor_default_theme = 'chaos'
+```
 

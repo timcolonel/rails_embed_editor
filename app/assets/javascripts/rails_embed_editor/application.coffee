@@ -52,16 +52,27 @@ setup_editor = (element, options) ->
     button = $('<div><button class="rails_embed_code_editor_button">Save</button></div>').appendTo(element).children()
     button.text('Enable edit') if options['editormode'] == 'readwrite'
     button.click () ->
-      if options['editormode'] == 'readwrite'
-        button.text('Save')
-        editor.setReadOnly(false)
-      else
-        $.post('/rails_embed_editor/edit', {
-          content: editor.getValue()
-          first_line: options['first_line']
-          last_line: options['last_line']
-          filename: options['filename']
-        }).success (data) ->
+      if options['editormode'] != 'readonly'
+        if options['editormode'] == 'readwrite' and editor.getReadOnly()
+          button.text('Save')
+          editor.setReadOnly(false)
+        else
+          $.post('/rails_embed_editor/edit', {
+            content: editor.getValue()
+            first_line: options['first_line']
+            last_line: options['last_line']
+            filename: options['filename']
+          }).success (data) ->
+            if data['success'] == true
+              button.text('Saved!')
+
+            else
+              button.text('Error')
+              console.log('Error saving:' + data['message'])
+
+            setTimeout(() ->
+              button.text("Save")
+            , 2000)
 
 compute_range = (str, line = 1) ->
   offset = parseInt(line)
@@ -71,10 +82,10 @@ compute_range = (str, line = 1) ->
     _array[i] = parseInt(_array[i])
   switch _array.length
     when 1
-      new Range(_array[0]-offset, 0, _array[0]-offset, Infinity)
+      new Range(_array[0] - offset, 0, _array[0] - offset, Infinity)
     when 2
-      new Range(_array[0]-offset, 0, _array[1]-offset, Infinity)
+      new Range(_array[0] - offset, 0, _array[1] - offset, Infinity)
     when 4
-      new Range(_array[0]-offset, _array[1], _array[2]-offset, _array[3])
+      new Range(_array[0] - offset, _array[1], _array[2] - offset, _array[3])
     else
       null

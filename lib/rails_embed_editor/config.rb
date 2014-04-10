@@ -8,6 +8,15 @@ module RailsEmbedEditor
       def reset
         self.authorize_with = nil
       end
+
+      def authorize_with(param = nil)
+        if param.nil?
+          @authorize_with
+        else
+          @authorize_with = param
+        end
+
+      end
     end
   end
 end

@@ -1,7 +1,10 @@
 module RailsEmbedEditor
-  class EditorController < ApplicationController
+  class EditorController < RailsEmbedEditor::ApplicationController
     def edit
-      _authorize! :edit, :local_file
+      unless _authorize :edit, :local_file
+        render :json => {:success => false, :message => 'You dont have access to this file!'}
+        return
+      end
 
       filename = params[:filename]
       text = params[:content]

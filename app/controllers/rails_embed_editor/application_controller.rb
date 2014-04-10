@@ -8,5 +8,14 @@ module RailsEmbedEditor
         true
       end
     end
+
+    def _authorize(*args)
+      begin
+        _authorize! *args
+        true
+      rescue CanCan::AccessDenied => e
+        false
+      end
+    end
   end
 end

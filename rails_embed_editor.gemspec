@@ -21,4 +21,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'json'
 
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'cancan'
+  s.add_development_dependency 'tzinfo-data'
+  s.add_development_dependency 'minitest'
+  s.add_development_dependency 'minitest-reporters'
 end

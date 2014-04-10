@@ -45,6 +45,8 @@
         1,
         1,
         1,
+        1,
+        1,
         null,
         1,
         1,
@@ -76,6 +78,8 @@
         1,
         1,
         null,
+        1,
+        0,
         null,
         null,
         null,
@@ -132,6 +136,29 @@
         2,
         21,
         null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "C:/dev/ws/ruby/rails_embed_editor/lib/rails_embed_editor/editor_mode.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "C:/dev/ws/ruby/rails_embed_editor/lib/rails_embed_editor/authorization.rb": [
+        1,
+        1,
+        1,
+        0,
+        null,
+        0,
+        null,
+        0,
         null,
         null,
         null,
@@ -266,6 +293,8 @@
         1,
         1,
         2,
+        null,
+        2,
         2,
         2,
         1,
@@ -283,6 +312,14 @@
         1,
         1,
         null,
+        1,
+        2,
+        0,
+        null,
+        2,
+        null,
+        null,
+        null,
         null
       ],
       "C:/dev/ws/ruby/rails_embed_editor/app/helpers/rails_embed_editor/application_helper.rb": [
@@ -294,12 +331,49 @@
         0,
         0,
         0,
+        0,
+        null,
+        null,
+        null,
         null,
         null,
         null
       ],
       "C:/dev/ws/ruby/rails_embed_editor/test/dummy/app/helpers/application_helper.rb": [
         1,
+        null
+      ],
+      "C:/dev/ws/ruby/rails_embed_editor/test/generators/install_generator_test.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "C:/dev/ws/ruby/rails_embed_editor/lib/generators/rails_embed_editor/install_generator.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "C:/dev/ws/ruby/rails_embed_editor/test/integration/navigation_test.rb": [
@@ -393,6 +467,6 @@
         null
       ]
     },
-    "timestamp": 1395857757
+    "timestamp": 1397159025
   }
 }

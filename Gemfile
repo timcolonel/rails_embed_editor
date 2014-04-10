@@ -14,3 +14,7 @@ gemspec
 # gem 'debugger'
 
 gem 'coveralls'
+
+if RUBY_PLATFORM =~ /(win32|w32)/
+  gem 'win32console'
+end

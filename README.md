@@ -8,11 +8,26 @@ Install the gem
 ```ruby
 gem 'rails_embed_editor'
 ```
+
 Include the assests
 ```erb
   <%= javascript_include_tag 'rails_embed_editor/application' if Rails.env.development? %>
   <%= stylesheet_link_tag 'rails_embed_editor/application' if Rails.env.development? %>
 ```
+
+#Configure
+Generate the config file
+
+```bash
+rails g rails_embed_editor:config
+```
+
+Add authorization. In the config file
+```ruby
+config.authorize_with :cancan #only cancan is supported for now
+```
+The user need the permission `:edit :local_file' to be edit a file.
+
 #How it work
 Use the method helper to generate an editor
 ```ruby

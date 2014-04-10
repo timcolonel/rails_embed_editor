@@ -69,7 +69,6 @@ setup_editor = (element, options) ->
             else
               button.text('Error')
               console.log('Error saving:' + data['message'])
-
             setTimeout(() ->
               button.text("Save")
             , 2000)

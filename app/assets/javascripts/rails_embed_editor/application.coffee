@@ -43,6 +43,7 @@ setup_editor = (element, options) ->
   editor.setAutoScrollEditorIntoView();
   editor.setOption("maxLines", 40);
   editor.setOption("minLines", 5);
+  editor.setHighlightActiveLine(false)
 
   editor.getSession().addMarker(options['highlight'], "editor_highlight", "text") unless options['highlight'] == null
 

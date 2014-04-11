@@ -43,7 +43,13 @@ setup_editor = (element, options) ->
   editor.setAutoScrollEditorIntoView();
   editor.setOption("maxLines", 40);
   editor.setOption("minLines", 5);
+
+  #highlight the current line only if its focus
   editor.setHighlightActiveLine(false)
+  editor.on "focus", () ->
+    editor.setHighlightActiveLine(true)
+  editor.on "blur", () ->
+    editor.setHighlightActiveLine(false)
 
   editor.getSession().addMarker(options['highlight'], "editor_highlight", "text") unless options['highlight'] == null
 

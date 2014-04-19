@@ -23,7 +23,7 @@ window.load_rails_embed_code_editor = () ->
       editormode: container.data('editormode')
       highlight: compute_range(container.data('highlight'), container.data('first-line'))
     }
-    setup_editor(container[0], options)
+    setup_editor(container, options)
 
 
 setup_editor = (element, options) ->
@@ -34,7 +34,7 @@ setup_editor = (element, options) ->
     editormode: 'readonly'
   }
   options = $.extend({}, defaults, options);
-  editor = ace.edit(element)
+  editor = ace.edit(element[0])
   editor.commands.removeCommand('replace')
   editor.setTheme("ace/theme/" + options['theme']);
   editor.getSession().setMode("ace/mode/" + options['mode']);
@@ -64,15 +64,19 @@ setup_editor = (element, options) ->
           button.text('Save')
           editor.setReadOnly(false)
         else
+          last_line = editor.session.getLength() - options['first_line']+1
           $.post('/rails_embed_editor/edit', {
-            content: editor.getValue()
+            content: editor.getValue() + '\n'
             first_line: options['first_line']
             last_line: options['last_line']
             filename: options['filename']
           }).success (data) ->
             if data['success'] == true
               button.text('Saved!')
-
+              console.log('last: ' + options['last_line'])
+              console.log('new: ' + last_line)
+              element.attr('data-last-line', last_line)
+              options['last_line'] = last_line
             else
               button.text('Error')
               console.log('Error saving:' + data['message'])

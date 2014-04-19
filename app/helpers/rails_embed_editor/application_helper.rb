@@ -3,7 +3,7 @@ module RailsEmbedEditor
     def rails_embed_editor(filename, options ={})
       options[:editormode] ||= RailsEmbedEditor::EditorMode::READ_ONLY
       manager = RailsEmbedEditor::FileManager.from_options(filename, options)
-      text = manager.read_text
+      text = manager.read_text.chomp
       first_line = manager.first_line
       last_line = manager.last_line
       content_tag('div', text, :class => 'rails_embed_code_editor',
